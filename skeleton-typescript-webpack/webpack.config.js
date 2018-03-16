@@ -33,6 +33,7 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
   resolve: {
     extensions: ['.ts', '.js'],
     modules: [srcDir, 'node_modules'],
+    plugins: [new TsConfigPathsPlugin()],
   },
 
   devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
@@ -99,7 +100,6 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
       'jQuery': 'jquery',
       'window.jQuery': 'jquery',
     }),
-    new TsConfigPathsPlugin(),
     new CheckerPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.ejs',

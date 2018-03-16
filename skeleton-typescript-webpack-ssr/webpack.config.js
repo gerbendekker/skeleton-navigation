@@ -30,6 +30,7 @@ module.exports = ({production, server, extractCss, coverage, ssr} = {}) => ({
   resolve: {
     extensions: ['.ts', '.js'],
     modules: [srcDir, 'node_modules'],
+    plugins: [new TsConfigPathsPlugin()],
   },
   entry: {
     app: ['aurelia-bootstrapper'],
@@ -94,7 +95,6 @@ module.exports = ({production, server, extractCss, coverage, ssr} = {}) => ({
       'jQuery': 'jquery',
       'window.jQuery': 'jquery',
     }),
-    new TsConfigPathsPlugin(),
     new CheckerPlugin(),
     new HtmlWebpackPlugin({
       filename: ssr ? 'index.ssr.html' : 'index.html',
